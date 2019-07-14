@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+
+{% block content %}
+    <h3>Your Tasks</h3>
+    <ul class="taskList">
+        {% if tasks %}
+            {% for task in tasks %}
+                <li class='task'>
+                    {{ task.description }} ({{ task.category }})  ---  {{ task.due }}
+                    <a href="{% url 'main:delete_task' pk=task.id %}">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </a>
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>You have no task, you can add tasks above.</p>
+        {% endif %}
+    </ul>
+
+    <br><br>
+
+    <h3>Add A Task</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary btn-sm">Submit</button>
+    </form>  
+{% endblock %}
