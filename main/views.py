@@ -13,7 +13,9 @@ def home(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
             description = form.cleaned_data.get('description')
             messages.success(request, f"New task created: {description}")
             return HttpResponseRedirect("/")
@@ -24,7 +26,7 @@ def home(request):
     form = TaskForm()
          
     # All the tasks (from the model)
-    tasks = Task.objects.all().order_by("due")
+    tasks = Task.objects.all().filter(user=request.user).order_by("due")
 
     # Context variable
     context = {
