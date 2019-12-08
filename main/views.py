@@ -4,8 +4,10 @@ from django.shortcuts import get_object_or_404
 from .models import Task, Category
 from .forms import TaskForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def home(request):
     # Handling form input 
     if request.method == 'POST':
@@ -36,6 +38,7 @@ def home(request):
                   context=context)
 
 
+@login_required
 def delete_task(request, pk):
     #  Deleting the task
     dt = get_object_or_404(Task, pk=pk)
