@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import './calender.dart';
+import './home.dart';
+import './intray.dart';
+import './settings.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,21 +27,11 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Calender',
-      style: optionStyle,
-    ),
-    Text(
-      'Settings',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    Home(),
+    Intray(),
+    Settings(),
+    Calender(),
   ];
 
   void _onItemTapped(int index) {
@@ -52,6 +46,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('Tasks'),
         backgroundColor: Colors.purple[800],
+        actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.list), 
+              onPressed: (){_redirectCalender();}
+            )
+          ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -60,12 +60,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
+            title: Text(""),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calender),
+            icon: Icon(Icons.calendar_today),
+            title: Text(""),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
+            title: Text(""),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -74,4 +77,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );
   }
+
+  void _redirectCalender() {
+    Navigator.of(context)
+    .push(
+        MaterialPageRoute(
+        builder: (BuildContext context) {
+          return Calender();
+        }
+      )
+    );
+  }
 }
+
+
+
+
+
