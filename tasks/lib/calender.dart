@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Calender extends StatelessWidget {
+class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Home"),
+      child: Text("Calendar"),
     );
   }
 }

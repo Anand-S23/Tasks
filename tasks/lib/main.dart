@@ -30,8 +30,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static List<Widget> _widgetOptions = <Widget>[
     Home(),
     Intray(),
-    Settings(),
-    Calender(),
+    Calendar(),
   ];
 
   void _onItemTapped(int index) {
@@ -47,11 +46,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: const Text('Tasks'),
         backgroundColor: Colors.purple[800],
         actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.list), 
-              onPressed: (){_redirectCalender();}
-            )
-          ],
+          IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Settings()),
+                );
+              })
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -60,15 +63,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text(""),
+            title: Text("Home"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle),
+            title: Text("Intray"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
-            title: Text(""),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text(""),
+            title: Text("Calender"),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -77,20 +80,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );
   }
-
-  void _redirectCalender() {
-    Navigator.of(context)
-    .push(
-        MaterialPageRoute(
-        builder: (BuildContext context) {
-          return Calender();
-        }
-      )
-    );
-  }
 }
-
-
-
-
-
