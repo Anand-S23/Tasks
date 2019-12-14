@@ -5,6 +5,7 @@ class Calendar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Text("Calendar"),
+      backgroundColor: Colors.grey[600],
     );
   }
 }

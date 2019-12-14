@@ -6,7 +6,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: 200.0,
+        height: 160.0,
           color: Colors.transparent,
           child: Container(
               decoration: BoxDecoration(

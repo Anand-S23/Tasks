@@ -4,39 +4,45 @@ class Intray extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 200.0,
-        color: Colors.transparent,
-        child: Container(
+      body: Stack(children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(left: 50),
+          height: 160,
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: const Radius.circular(40.0),
-                  bottomRight: const Radius.circular(40.0))),
-          child: Text(
-            "Intray",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 2,
-              color: Colors.black,
-            ),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40)),
+            color: Colors.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Intray",
+                style: TextStyle(fontSize: 2,),
+              ),
+              Container()
+            ],
           ),
         ),
-          Center(
-            child: Ink(
-              decoration: const ShapeDecoration(
-                color: Colors.lightBlue,
-                shape: CircleBorder(),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.android),
-                color: Colors.white,
-                onPressed: () {},
-              ),
+        Container(
+          height: 60,
+          width: 60,
+          margin: EdgeInsets.only(
+              top: 130, left: MediaQuery.of(context).size.width * 0.5 - 30),
+          child: FloatingActionButton(
+            child: Icon(
+              Icons.add,
+              size: 40,
             ),
+            backgroundColor: Colors.purple[800],
+            onPressed: () {},
           ),
-        ),
+        )
+      ]),
+      backgroundColor: Colors.grey[600],
     );
   }
+
+  
 }
